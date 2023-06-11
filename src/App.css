@@ -1,0 +1,116 @@
+:root {
+  --color:125,125,125,1;
+  --shadowColor: 10px 10px 5px 0px rgba(var(--color));
+}
+
+* {
+    margin: 0;
+    font-family:Arial, Helvetica, sans-serif;
+    color: #000;
+  }
+
+  .main-header{
+    background-color: #276f2e;
+    text-align: center;
+    padding: 10px;
+  }
+  .main-header h1{
+    color:white;
+    font-size: 48px;
+    font-weight: 400;
+  }
+
+
+  .shelf-title{
+    margin-top: 20px;
+    font-size: 30px;
+    font-weight: 700;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #d0d0d0;
+  }
+
+  .books-wrapper{
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+  }
+
+  .add-book{
+    margin: 20px;
+    color: white;
+    width: 62px;
+    font-size: 40px;
+    border: 0;
+    border-radius: 50px;
+    background-color: #276f2e;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    -webkit-box-shadow: var(--shadowColor);
+    -moz-box-shadow: var(--shadowColor);
+    box-shadow: 2px 4px 5px 0px rgba(var(--color));
+  }
+  .drop-down-btn{
+    color: white;
+    width: 50px; height: 50px;
+    font-size: 32px;
+    border: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    background-color: #53a150;
+    -webkit-box-shadow: var(--shadowColor);
+    -moz-box-shadow: var(--shadowColor);
+    box-shadow: 2px 4px 5px 0px rgba(var(--color));
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(125%, 0%);
+  }
+  .book-cover{
+    height: 250px;
+    -webkit-box-shadow: var(--shadowColor);
+    -moz-box-shadow: var(--shadowColor);
+    box-shadow: 2px 4px 5px 0px rgba(var(--color));
+  }
+
+  .search-header{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    -webkit-box-shadow: var(--shadowColor);
+    -moz-box-shadow: var(--shadowColor);
+    box-shadow: 2px 4px 5px 0px rgba(var(--color));
+  }
+
+  .back-arrow{
+    font-size: 30px;
+    cursor: pointer;
+    
+  }
+  .search-input{
+    margin-left: 50px;
+    font-size: 28px;
+    width: 100%;
+  }
+
+  textarea:focus, input:focus{
+    outline: none;
+}
+
+.rendered-card{
+  height: auto;
+}
+
+
+.book-title{
+  font-weight: 400;
+  font-size: 18px;
+}
+.book-author{
+  font-weight: 400;
+  font-size: 18px;
+  color: #9a9a9a;
+}
