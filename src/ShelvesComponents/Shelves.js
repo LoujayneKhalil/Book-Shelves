@@ -11,9 +11,16 @@ class Shelves extends Component {
       wantToShelf:JSON.parse(localStorage.getItem("want to read")),
       ReadShelf:JSON.parse(localStorage.getItem("read")),
     }
+    this.updateState = this.updateState.bind(this);
   }
 
-
+  updateState() {
+    this.setState({
+      currentlyShelf:JSON.parse(localStorage.getItem("current reading")),
+      wantToShelf:JSON.parse(localStorage.getItem("want to read")),
+      ReadShelf:JSON.parse(localStorage.getItem("read"))
+    })
+  }
     
   render() {
     const shelfName =  [
@@ -25,7 +32,7 @@ class Shelves extends Component {
       return (
         <div className="container" key={name.id}>
           <h2 className="shelf-title">{name.title}</h2>
-            <Cards books={name.booksArr}/>
+            <Cards books={name.booksArr} updateState={this.updateState}/>
           <button className="add-book" onClick={()=>this.props.setView(false)}>+</button>
         </div>
       );

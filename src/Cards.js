@@ -3,13 +3,39 @@ import { Component } from "react";
 class Cards extends Component {
   handleClick(e, book) {
     const selected = e.target.value;
-    
-    const booksArr = JSON.parse(localStorage.getItem(selected));    
-    if (booksArr == null) {
-      localStorage.setItem(selected, JSON.stringify([book]));
-    } else {
-      localStorage.setItem(selected, JSON.stringify([...booksArr, book]));
+    console.log(selected);
+
+    const booksArr = JSON.parse(localStorage.getItem(selected));
+    console.log(booksArr);
+
+    if (selected === "none") {
+      // alert(book.status);
     }
+
+    if (book.status !== undefined) {
+      let currentArr = JSON.parse(localStorage[book.status]);
+      for (let i = 0; i < currentArr.length; i++) {
+        
+        if (currentArr[i].key === book.key) {
+          currentArr.splice(i, 1);
+          localStorage.setItem(book.status, JSON.stringify(currentArr));
+        }
+      }
+    }
+
+    if (selected !== "none") {
+      book.status = selected;
+
+      if (booksArr == null) {
+        localStorage.setItem(selected, JSON.stringify([book]));
+      } else {
+        localStorage.setItem(selected, JSON.stringify([...booksArr, book]));
+      }
+    }
+    if (this.props.updateState !== undefined) {
+      this.props.updateState();
+    }
+    
   }
 
   render() {
@@ -21,6 +47,7 @@ class Cards extends Component {
             <img
               src={`https://covers.openlibrary.org/b/id/${book.cover_i}.jpg`}
               className="book-cover mb-3"
+              alt=""
             ></img>
             <div className="dropdown open">
               <option
@@ -28,8 +55,6 @@ class Cards extends Component {
                 type="button"
                 id="triggerId"
                 data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
               ></option>
               <div
                 onClick={(e) => this.handleClick(e, book)}
@@ -61,7 +86,7 @@ class Cards extends Component {
     return (
       <div className="books-cards">
         <div className="container books-wrapper">
-          <div className="row w-100 ">{searchedBook}</div>
+          <div className="row w-100 d-flex justify-content-center">{searchedBook}</div>
         </div>
       </div>
     );
