@@ -12,7 +12,14 @@ class Shelves extends Component {
       ReadShelf:JSON.parse(localStorage.getItem("read")),
     }
     this.updateState = this.updateState.bind(this);
+
+    
+
+
   }
+
+
+
 
   updateState() {
     this.setState({
@@ -23,10 +30,22 @@ class Shelves extends Component {
   }
     
   render() {
+    const current = localStorage.getItem('current reading');
+    const want = localStorage.getItem('want to read');
+    const read = localStorage.getItem('read');
+
+    if(current === null & want === null & read === null){
+      localStorage.setItem("current reading",JSON.stringify([]))
+      localStorage.setItem("want to read",JSON.stringify([]))
+      localStorage.setItem("read",JSON.stringify([]))
+    }else{
+        
+    }
+    
     const shelfName =  [
       { id: 1, title: "Currently Reading" ,booksArr:this.state.currentlyShelf},
       { id: 2, title: "Want to Read",booksArr:this.state.wantToShelf},
-      { id: 3, title: "Read",booksArr:this.state.ReadShelf },
+      { id: 3, title: "Read",booksArr:this.state.ReadShelf},
     ]
     const title = shelfName.map((name) => {
       return (
@@ -37,6 +56,8 @@ class Shelves extends Component {
         </div>
       );
     });
+  
+
 
     return (
       <div className="shelve-page">

@@ -8,14 +8,9 @@ class Cards extends Component {
     const booksArr = JSON.parse(localStorage.getItem(selected));
     console.log(booksArr);
 
-    if (selected === "none") {
-      // alert(book.status);
-    }
-
     if (book.status !== undefined) {
       let currentArr = JSON.parse(localStorage[book.status]);
       for (let i = 0; i < currentArr.length; i++) {
-        
         if (currentArr[i].key === book.key) {
           currentArr.splice(i, 1);
           localStorage.setItem(book.status, JSON.stringify(currentArr));
@@ -26,7 +21,7 @@ class Cards extends Component {
     if (selected !== "none") {
       book.status = selected;
 
-      if (booksArr == null) {
+      if (booksArr === null) {
         localStorage.setItem(selected, JSON.stringify([book]));
       } else {
         localStorage.setItem(selected, JSON.stringify([...booksArr, book]));
@@ -35,15 +30,17 @@ class Cards extends Component {
     if (this.props.updateState !== undefined) {
       this.props.updateState();
     }
-    
   }
 
   render() {
+
+
+
     const { books } = this.props;
     const searchedBook = books.map((book) => {
       return (
-        <div className="col-2 my-3" key={book.cover_i}>
-          <div className="card border-0 h-100">
+        <div className="col-2 my-3" key={book.key}>
+          <div className="card border-0 h-100" key={book.key}>
             <img
               src={`https://covers.openlibrary.org/b/id/${book.cover_i}.jpg`}
               className="book-cover mb-3"
@@ -86,7 +83,9 @@ class Cards extends Component {
     return (
       <div className="books-cards">
         <div className="container books-wrapper">
-          <div className="row w-100 d-flex justify-content-center">{searchedBook}</div>
+          <div className="row w-100 d-flex justify-content-center">
+            {searchedBook}
+          </div>
         </div>
       </div>
     );
